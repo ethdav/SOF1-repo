@@ -5,7 +5,7 @@ Author: Ethan Davis
 
 def recursive_triangle(rows, curr_row=1):
     """
-    Prints a right triangle with alternating 1's and 0's using recursion
+    Prints a right triangle with alternating 1's and 0's using recursion. The formula for printing the rows could have probably been accomplished using a separate function, potentially even a recursive one, but this seems to work.
     """
     if curr_row > rows:
         return
