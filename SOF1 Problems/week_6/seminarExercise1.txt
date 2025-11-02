@@ -1,0 +1,13 @@
+Function find_pairs(num_list: list, target: int): list
+    valid_list = [] : list
+    for i:= 0 to length(num_list)
+        target_half = num_list[i] - target : int
+        for j:= 0 to length(num_list)
+            if num_list[j] == num_list[i]
+                pass
+            else if num_list[j] == target_half
+                append to valid_list a tuple of (target_half, num_list[j])
+            end if
+        end for
+    end for
+    return valid_list
