@@ -1,0 +1,3 @@
+Function merge(ListA: list, ListB: list): list
+    merged_list = [] : list
+    
