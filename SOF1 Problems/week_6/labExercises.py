@@ -37,12 +37,34 @@ def save_to_log(entry, logfile):
     log.write("\n" + entry)
     log.close()
 
+def read_uppercase(filename):
+    """prints the contents of a file in uppercase
+
+    Args:
+        filename (_type_): _description_
+    """
+    file = open(filename,"r")
+    print(file.read().upper())
+    file.close()
+
+def to_uppper_case(input_file, output_file):
+    """reads the contents of one file and outputs it to another file
+    in uppercase
+
+    Args:
+        input_file (_type_): _description_
+        output_file (_type_): _description_
+    """
+    input_file = open(input_file,"r")
+    output_file = open(output_file,"w")
+    output_file.write(input_file.read().upper())
+    input_file.close()
+    output_file.close()
+
 def main():
-    #sentences = ["This","is","a","sentence"]
-    #filename = "./week_6/exo2.txt"
-    #save_list_to_file(sentences,filename)
-    entry = "newest entry number 3"
-    logfile = "./week_6/log.txt"
-    save_to_log(entry, logfile)
+    filename = "./week_6/exo1.txt"
+    read_uppercase(filename)
+    output_file = "./week_6/out.txt"
+    to_uppper_case(filename, output_file)
 
 main()
