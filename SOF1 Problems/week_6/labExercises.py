@@ -61,10 +61,26 @@ def to_uppper_case(input_file, output_file):
     input_file.close()
     output_file.close()
 
+def sum_from_file(filename):
+    """Sums all of the integer values separated by whitespaces in a file
+
+    Args:
+        filename (str): the filename as a string
+    """
+    file = open(filename,"r")
+    value_list = file.read().split()
+    sum = 0
+    for value in value_list:
+        sum += int(value)
+    file.close()
+    return sum
+
 def main():
-    filename = "./week_6/exo1.txt"
-    read_uppercase(filename)
-    output_file = "./week_6/out.txt"
-    to_uppper_case(filename, output_file)
+    # filename = "./week_6/exo1.txt"
+    # read_uppercase(filename)
+    # output_file = "./week_6/out.txt"
+    # to_uppper_case(filename, output_file)
+    value_file = "./week_6/values.txt"
+    print(sum_from_file(value_file))
 
 main()
