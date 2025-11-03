@@ -13,12 +13,18 @@ sample_text = (" As Python s creator, I'd like to say a few words about its "+
 
 ######################### EXERCISE 1 ##########################################
 
+PUNC = " ,.?!:;"
+
 def split_text(text, separators=" "):
     """Emulates the split() function
 
     Args:
-        text (_type_): _description_
-        separators (str, optional): _description_. Defaults to " ".
+        text (str): the string to be split
+        separators (str, optional): All of the characters used to split
+        the text. Defaults to " ".
+    Returns:
+        A list of strings, where each element is all characters in
+        between separators
     """
     sep_list = [x for x in separators]
     temp_word = None
@@ -39,8 +45,24 @@ def split_text(text, separators=" "):
         separated.append(temp_word)
     return separated
 
+def get_words_frequencies(text):
+    """Returns a dictionary containing each word and its frequencies
+
+    Args:
+        text (_type_): _description_
+    """
+    split = split_text(text,PUNC)    #perhaps needs ALL non-alphanumeric chars as separators
+    freq_dict = dict()
+    for item in split:
+        if item.lower() not in freq_dict:
+            freq_dict[item.lower()] = 1
+        else:
+            freq_dict[item.lower()] += 1
+    return freq_dict
+
 def main():
-    sample = "This is a, somewhat, more complicated test."
-    print(split_text(sample," ,"))
+    # sample = "This is a, somewhat, more complicated test."
+    # print(split_text(sample," ',."))
+    print(get_words_frequencies(sample_text))
 
 main()
