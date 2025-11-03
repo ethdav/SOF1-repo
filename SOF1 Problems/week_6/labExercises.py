@@ -67,13 +67,19 @@ def sum_from_file(filename):
     Args:
         filename (str): the filename as a string
     """
-    file = open(filename,"r")
-    value_list = file.read().split()
-    sum = 0
-    for value in value_list:
-        sum += int(value)
-    file.close()
-    return sum
+    try:
+        file = open(filename,"r")
+        value_list = file.read().split()
+        file.close()    #file immediately closed after use
+        sum = 0
+        for value in value_list:
+            sum += int(value)
+        return sum
+    except FileNotFoundError:
+        print("ERROR: Specified file does not exist")
+    except ValueError:
+        print("ERROR: File contains non-integer characters")
+        
 
 def main():
     # filename = "./week_6/exo1.txt"

@@ -1,3 +1,10 @@
+this is silly and i dislike it
+
 Function merge(ListA: list, ListB: list): list
     merged_list = [] : list
-    
+    if len(listA) > len(listB) do
+        shorter_list = listB : list
+    else if len(listA) <= len(listB) do
+        shorter_list = listA : list
+    end if
+    for x:= 0 to len(shorter_list) do
