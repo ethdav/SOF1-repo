@@ -13,7 +13,7 @@ sample_text = (" As Python s creator, I'd like to say a few words about its "+
 
 ######################### EXERCISE 1 ##########################################
 
-PUNC = " ,.?!:;"
+from string import punctuation as punc
 
 def split_text(text, separators=" "):
     """Emulates the split() function
@@ -51,7 +51,7 @@ def get_words_frequencies(text):
     Args:
         text (_type_): _description_
     """
-    split = split_text(text,PUNC)    #perhaps needs ALL non-alphanumeric chars as separators
+    split = split_text(text,punc+" ")
     freq_dict = dict()
     for item in split:
         if item.lower() not in freq_dict:
@@ -60,9 +60,28 @@ def get_words_frequencies(text):
             freq_dict[item.lower()] += 1
     return freq_dict
 
+def flatten(list_2d):
+    """Flattens a 2D list
+
+    Args:
+        list_2d (_type_): _description_
+    """
+    flattened = []      # I feel like theres a way to do this with list comprehension
+    for index in list_2d:
+        for item in index:
+            flattened.append(item)
+    return flattened
+
+def flatten_w_comprehension(list_2d):
+    flattened = [x for sublist in list_2d for x in sublist]
+    return flattened
+
 def main():
     # sample = "This is a, somewhat, more complicated test."
     # print(split_text(sample," ',."))
-    print(get_words_frequencies(sample_text))
+    # print(get_words_frequencies(sample_text))
+    list_2d = [[1,2,3],[],[4,5,6]]
+    print(flatten(list_2d))
+    print(flatten_w_comprehension(list_2d))
 
 main()
