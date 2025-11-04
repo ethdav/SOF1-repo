@@ -76,12 +76,33 @@ def flatten_w_comprehension(list_2d):
     flattened = [x for sublist in list_2d for x in sublist]
     return flattened
 
+def rasterize(list_1d, width):
+    """Transforms a 1D list into a 2D list with the given width.
+
+    Args:
+        list_1d (_type_): _description_
+        width (_type_): _description_
+    """
+    if len(list_1d)%width == 0 and width != 0:      # This could be done better with slicing or comprehension
+        list_2d = [[] for x in range(len(list_1d)//width)]
+        for x in range(len(list_1d)):
+            list_2d[(x//width)].append(list_1d[x])
+        return list_2d
+    else:
+        return None
+    
+def rasterize_comprehension(list_1d, width):
+    if len(list_1d)%width == 0 and width != 0:
+        return [list_1d[x:x+width] for x in range(0,len(list_1d),width)]
+    else:
+        return None
+
 def main():
     # sample = "This is a, somewhat, more complicated test."
     # print(split_text(sample," ',."))
     # print(get_words_frequencies(sample_text))
-    list_2d = [[1,2,3],[],[4,5,6]]
-    print(flatten(list_2d))
-    print(flatten_w_comprehension(list_2d))
+    list_1d = [1,2,3,4,5,6,7,8]
+    print(rasterize(list_1d, 4))
+    print(rasterize_comprehension(list_1d, 2))
 
 main()
