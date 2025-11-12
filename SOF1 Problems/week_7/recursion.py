@@ -71,14 +71,33 @@ def rec_sum_digits(number, sum=0, i=0):
         i += 1
         return rec_sum_digits(number, new_sum, i)
 
+def flatten(mlist, flattened=[], index=0):
+    """Recurisively flattens a multidimensional list, ignoring empty lists
+
+    Args:
+        mlist (_type_): _description_
+    """
+    length = len(mlist)
+    if index == length:
+        return flattened
+    else:
+        if isinstance(mlist[index], list):
+            flatten(mlist[index], flattened)
+        else:
+            flattened.append(mlist[index])
+        index+=1
+        return flatten(mlist, flattened, index)
+
 def main():
     # word_1 = "Live on time, emit no evil"
     # print(ispalindrome(word_1))
     # num_list = [3,4,-1,7,2,-3]
     # empty_list = []
     # print(rec_sum(num_list),"\n",rec_sum(empty_list))
-    number = 1234
-    print(rec_sum_digits(number))
+    # number = 1234
+    # print(rec_sum_digits(number))
+    mlist = [[1,2],[],3,[4,5,6]]
+    print(flatten(mlist))
 
 if __name__ == "__main__":
     main()
