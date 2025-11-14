@@ -157,9 +157,25 @@ def something_ish(word, pattern, i=0, char_set=set()):
         i+=1
         return something_ish(word, pattern, i, char_set)
 
+def is_power(a,b):
+    """Recursive function to determine if a is a power of b
+
+    Args:
+        a (_type_): _description_
+        b (_type_): _description_
+    """
+    if a == b:
+        return True
+    else:
+        if a%b == 0 and (a/b)%b == 0:
+            return is_power(a/b, b)
+        else:
+            return False
+
 def main():
-    word = "Truly amazing if my code kinda works"
-    print(something_ish(word, "sky"))
+    a = 81
+    b = 3
+    print(is_power(a,b))
 
 if __name__ == "__main__":
     main()
