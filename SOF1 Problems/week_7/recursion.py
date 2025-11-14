@@ -88,16 +88,78 @@ def flatten(mlist, flattened=[], index=0):
         index+=1
         return flatten(mlist, flattened, index)
 
+def merge(alist, blist, merged=[],ia=0, ib=0):
+    """Recursively merges two sorted lists in sorted order
+
+    Args:
+        alist (list): the first of two sorted lists that are to be merged
+        blist (list): the other sorted list to be merged
+        merged (list): the resulting merged list
+        ia (int): a pointer for the index of list a
+        ib (int): a pointer for the index of list b
+    """
+    if ia == len(alist)-1 and ib == len(blist)-1:
+        return merged
+    else:
+        if ia != len(alist)-1 and ib != len(blist)-1:
+            if alist[ia] >= blist[ib]:
+                merged.append(blist[ib]); merged.append(alist[ia])
+            else:
+                merged.append(alist[ia]); merged.append(blist[ib])
+            ia+=1
+            ib+=1
+        elif ia == len(alist)-1:
+            merged.append(blist[ib])
+            ib+=1
+        else:
+            merged.append(alist[ia])
+            ia+=1
+        return merge(alist, blist, merged, ia, ib)
+
+def iselfish(word, i=0 ,char_set=set()):
+    """Recursive function for determining if a word is "elfish", ie.
+    containing all the letters of the word "elf"
+
+    Args:
+        word (str): the word passed in to be determined
+        char_set (set, optional): the set of characters from the given
+        word that match the letters of "elf". Defaults to {}.
+    """
+    elf_set = {"e", "l", "f"}
+    if char_set == elf_set:
+        return True
+    elif i == len(word):
+        return False
+    else:
+        if word[i] in elf_set:
+            char_set.add(word[i])
+        i+=1
+        return iselfish(word, i, char_set)
+
+def something_ish(word, pattern, i=0, char_set=set()):
+    """Recursive function to see if a given word contains all of the
+    letters of the given pattern, in any order.
+
+    Args:
+        word (_type_): _description_
+        pattern (_type_): _description_
+        i (int, optional): _description_. Defaults to 0.
+        char_set (_type_, optional): _description_. Defaults to set().
+    """
+    pattern_set = set(pattern)
+    if char_set == pattern_set:
+        return True
+    elif i == len(word):
+        return False
+    else:
+        if word[i] in pattern_set:
+            char_set.add(word[i])
+        i+=1
+        return something_ish(word, pattern, i, char_set)
+
 def main():
-    # word_1 = "Live on time, emit no evil"
-    # print(ispalindrome(word_1))
-    # num_list = [3,4,-1,7,2,-3]
-    # empty_list = []
-    # print(rec_sum(num_list),"\n",rec_sum(empty_list))
-    # number = 1234
-    # print(rec_sum_digits(number))
-    mlist = [[1,2],[],3,[4,5,6]]
-    print(flatten(mlist))
+    word = "Truly amazing if my code kinda works"
+    print(something_ish(word, "sky"))
 
 if __name__ == "__main__":
     main()
