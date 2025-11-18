@@ -14,7 +14,7 @@ class Vector:
             out = out[:-2]
             return out + ">"
         
-    def equals(self, other):
+    def __eq__(self, other):
         if isinstance(other, Vector) is False:
             return False
         elif self.size() != other.size():
@@ -24,6 +24,9 @@ class Vector:
                 if self._vector[index] != other._vector[index]:
                     return False
             return True
+        
+    def __ne__(self, other):
+        return not self == other
      
     def dim(self):
         if isinstance(self._vector, list):

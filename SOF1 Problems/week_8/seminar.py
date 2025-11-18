@@ -22,9 +22,31 @@ def sum_all(num_list, i=0, sum=0):
         i+=1
         return sum_all(num_list, i, sum)
     
+def wildcard(pattern, i=0, solution_set=set()):
+    """Given a string of 1's and 0's with wildcard characters (?) mixed
+    in, find every possible combination of strings with those wildcards
+    being either a 1 or 0
+
+    Args:
+        pattern (str): The binary string with wildcards mixed in
+        i (int, optional): Index of the string. Defaults to 0.
+    """
+    if i == len(pattern):
+        solution_set.add(pattern)
+        return
+    else:
+        if pattern[i] == "?":
+            pattern0 = pattern[0:i] + "0" + pattern[i+1:]
+            pattern1 = pattern[0:i] + "1" + pattern[i+1:]
+            wildcard(pattern0, i, solution_set)
+            wildcard(pattern1, i, solution_set)
+            return solution_set
+        i+=1
+        return wildcard(pattern, i, solution_set)
+    
 def main():
-    multi_list = [1,3,[5,7],9,[1,[2,[3,4]]]]
-    print(sum_all(multi_list))
+    pattern = "1?11?00?1?"
+    print(wildcard(pattern))
 
 if __name__ == "__main__":
     main()
