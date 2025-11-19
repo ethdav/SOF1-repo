@@ -27,6 +27,26 @@ class Vector:
         
     def __ne__(self, other):
         return not self == other
+    
+    def __add__(self, other):
+        if isinstance(other, Vector) is False:
+            raise TypeError(f"Cannot add type vector to type:{type(other)}")
+        elif self.size() != other.size():
+            raise ValueError("Vectors not of same length")
+        else:
+            added_list = []
+            for item in range(len(self._vector)):
+                added_list.append(self._vector[item] + other._vector[item])
+            return Vector(added_list)
+
+    def __mul__(self, other):
+        if isinstance(other, (int, float)):
+            return Vector([x*other for x in self._vector])
+        else:
+            raise TypeError(f"Error: invalid type:{type(other)}")
+        
+    def __rmul__(self, other):
+        return self * other
      
     def dim(self):
         if isinstance(self._vector, list):
@@ -58,22 +78,12 @@ class Vector:
         for item in self._vector:
             scalar_list.append(item * scalar)
         return Vector(scalar_list)
-    
-    def add(self, other):
-        if isinstance(other, Vector) is False:
-            raise TypeError("Given item is not a vector")
-        elif self.size() != other.size():
-            raise ValueError("Vectors not of same length")
-        else:
-            added_list = []
-            for item in range(len(self._vector)):
-                added_list.append(self._vector[item] + other._vector[item])
-            return Vector(added_list)
 
 def main():
     vector1 = Vector([1,3,5])
-    vector2 = Vector([1.0,3.5,5.0])
-    print(vector1)
+    vector2 = vector1.scalar_product(1)
+    new_vector = vector1 * 5
+    print(new_vector)
 
 if __name__ == "__main__":
     main()
