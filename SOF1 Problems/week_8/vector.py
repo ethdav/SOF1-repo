@@ -1,8 +1,18 @@
 import copy
 
 class Vector:
-    def __init__(self, vector_list=[]):
-        self._vector = copy.copy(vector_list)
+    def __init__(self, *vectors):
+        self._vector = []
+        if len(vectors) < 1:
+            pass
+        elif isinstance(vectors[0], list):
+            self._vector = copy.copy(vectors[0])
+        else:
+            for item in vectors:
+                if isinstance(item, (int, float)):
+                    self._vector.append(round(item, 1))
+                else:
+                    raise TypeError("Invalid data type")
 
     def __str__(self):
         if self.size() == 0:
@@ -47,6 +57,24 @@ class Vector:
         
     def __rmul__(self, other):
         return self * other
+    
+    def __iadd__(self, other):
+        return self + other
+
+    def __imul__(self, other):
+        return self * other
+    
+    def __getitem__(self, index):
+        return self._vector[index]
+    
+    def __setitem__(self, index, value):
+        if isinstance(value, (int, float)):
+            self._vector[index] = round(value, 1)
+        else:
+            raise TypeError(f"Value is invalid type:{type(value)}")
+        
+    def __delitem__(self, index):
+        self._vector.pop(index)
      
     def dim(self):
         if isinstance(self._vector, list):
@@ -81,9 +109,8 @@ class Vector:
 
 def main():
     vector1 = Vector([1,3,5])
-    vector2 = vector1.scalar_product(1)
-    new_vector = vector1 * 5
-    print(new_vector)
+    vector2 = Vector(1,3,5)
+    print(vector1 == vector2)
 
 if __name__ == "__main__":
     main()
