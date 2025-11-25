@@ -9,9 +9,12 @@ def max_cheese(case_allowance, *cheeses):
     Args:
         case_allowance (_type_): _description_
     """
-    pricePerGram = sorted([(x[1]/x[0]) for x in cheeses],reverse=True)
-    for cheese in cheeses:
-        remainder = None
+    chz_list = [x for x in cheeses]
+    for i in range(1,len(chz_list)):
+        if chz_list[i-1][1]/chz_list[i][0] > chz_list[i][1]/chz_list[i][0]:
+            popped = chz_list.pop(i)
+            chz_list.insert(i-1,popped)
+    
 
 def main():
     cheese1, cheese2, cheese3 = (3000,150), (2000,80), (3000,190)
