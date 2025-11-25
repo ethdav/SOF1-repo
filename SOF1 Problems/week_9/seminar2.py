@@ -9,12 +9,23 @@ def max_cheese(case_allowance, *cheeses):
     Args:
         case_allowance (_type_): _description_
     """
-    chz_list = [x for x in cheeses]
-    for i in range(1,len(chz_list)):
-        if chz_list[i-1][1]/chz_list[i][0] > chz_list[i][1]/chz_list[i][0]:
-            popped = chz_list.pop(i)
-            chz_list.insert(i-1,popped)
+    chz_sorted = ppg_sorter(cheeses)
+    print(chz_sorted)
     
+def ppg_sorter(cheese_list):
+    """
+
+    Args:
+        cheese_list (_type_): _description_
+    """
+    cheeses = list(cheese_list)
+    for i in range(len(cheeses)-1):
+        for j in range(i,len(cheeses)-1):
+            if cheeses[i][0]/cheeses[i][1] < cheeses[i+1][0]/cheeses[i+1][1]:
+                popped = cheeses.pop(i+1)
+                cheeses.insert(i, popped)
+    return cheeses
+
 
 def main():
     cheese1, cheese2, cheese3 = (3000,150), (2000,80), (3000,190)
