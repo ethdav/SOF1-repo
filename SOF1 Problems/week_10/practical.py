@@ -63,6 +63,9 @@ class LinkedQueue:
             return "LinkedQueue([])"
         else:
             return "LinkedQueue([" + str(self._front) + "])"
+        
+    def __len__(self):
+        return self._size
     
     def enqueue(self, value):
         if self._front is None:
@@ -84,12 +87,26 @@ class LinkedQueue:
             popped._next = None
             self._size -= 1
             return popped
+        
+    def peek(self):
+        if self._size == 0:
+            raise ValueError("Queue is empty")
+        else:
+            return self._front.data
+        
+    def isempty(self):
+        if self._size == 0:
+            return True
+        else:
+            return False 
 
 def main():
     newQ = LinkedQueue()
-    newQ.enqueue("first"), newQ.enqueue("second")
-    print(newQ)
-    print(newQ.pop(), newQ, newQ._size)
+    newQ.enqueue("first"), newQ.enqueue("second"), newQ.enqueue("third")
+    print(newQ, ",", newQ.peek(), ",", newQ)
+    print(newQ.pop(), ",", newQ, ",", newQ.peek())
+    newQ.enqueue("fourth")
+    print(newQ, len(newQ))
 
 if __name__ == "__main__":
     main()
