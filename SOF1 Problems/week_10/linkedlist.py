@@ -51,3 +51,31 @@ class LinkedList:
         front_node.tail = None
         self._size -= 1
         return front_node.data
+    
+    def isempty(self):
+        if self._size == 0:
+            return True
+        else:
+            return False
+
+    def clear(self):
+        """This seems to be the simplest way to clear the list, but unsure if this leaves leftover data floating in memory. An alternate way of doing this could be to initialize a new, empty linked list and set the current one to that
+        """
+        self._front = None
+        self._tail = None
+        self._size = 0
+
+    def index(self, value, start=0, stop=2147483647):
+        """The LinkedList class does operate like an actual list for some reason, but a queue, since append adds new objects to the back of the list, but pop removes from the front of the list
+        """
+        for x in range(start):
+            pass
+
+def main():
+    lList = LinkedList()
+    lList.append("first"), lList.append("second")
+    print(lList)
+    print(lList.pop(), ",", lList)
+
+if __name__ == "__main__":
+    main()
