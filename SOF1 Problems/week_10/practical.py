@@ -12,9 +12,9 @@ class LinkedStack:
 
     def __str__(self):
         if self._top is None:
-            return "Stack([])"
+            return "LinkedStack([])"
         else:
-            return "Stack([" + str(self._top) + "])"
+            return "LinkedStack([" + str(self._top) + "])"
         
     def __len__(self):
         return self._size
@@ -38,13 +38,20 @@ class LinkedStack:
             self._size -= 1
             return popped
         
+    def peek(self):
+        if self._size == 0:
+            raise ValueError("Stack is empty")
+        else:
+            return self._top.data
+        
+    def isempty(self):
+        if self._size == 0:
+            return True
+        else:
+            return False
+        
 def main():
-    stacky = LinkedStack()
-    stacky.push("first")
-    stacky.push("second")
-    print(stacky)
-    print(stacky.pop())
-    print(stacky)
+    pass
 
 if __name__ == "__main__":
     main()
