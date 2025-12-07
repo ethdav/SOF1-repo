@@ -3,6 +3,14 @@ Answer to question 4 of formative 2
 """
 
 def check_level(level):
+    """A recursive function to check if a given level is valid.
+
+    Args:
+        level (list): the level to be checked
+
+    Returns:
+        Bool: Returns True if the level is possible, or False if not
+    """
     if level[-1] == 0 or level[0] == 0:
         return False
     elif len(level) == 1:

@@ -3,10 +3,13 @@ Answer to question 3 of Formative 2
 """
 
 def read_from_file(filename):
-    """Reads a file for the values of an athletes times
+    """Reads a file for the values of an athletes times. It adds their times to a dictionary with the keys as the different events, and then adds those dictionaries to another dict using their names as the keys.
 
     Args:
-        filename (_type_): _description_
+        filename (str): the str name of the file to be handled
+
+    Returns:
+        A dictionary containing the dictionaries of the athletes times.
     """
     file = open(filename)
     athlete_dict = dict()

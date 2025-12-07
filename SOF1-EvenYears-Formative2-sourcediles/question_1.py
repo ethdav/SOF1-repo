@@ -1,5 +1,6 @@
 """
 Answer to question 1 for Formative 2
+The equation would occasionally spit out a complex number, so to prevent an error from being thrown I had to check if it was complex first.
 """
 import math
 
@@ -14,13 +15,13 @@ def track_points(time, eventParameters):
         eventParameters (3-tuple): the tuple of three parameters (a,b,c) for
         the event
     
-    Returns: the rounded down point score
+    Returns: the point score rounded down to the nearest whole integer
     """
     if len(eventParameters) != 3:
         raise ValueError("eventParameters requires 3 values")
-    
-    points = eventParameters[0]*(eventParameters[1] - time)**eventParameters[2]
-    if points < 0:
+    a, b, c = eventParameters
+    points = a * (b - time) ** c
+    if isinstance(points, complex) or points < 0:
         points = 0
     return math.floor(points)
 
