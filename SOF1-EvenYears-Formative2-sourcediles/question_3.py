@@ -16,6 +16,8 @@ def read_from_file(filename):
                 pass
             else:
                 split = line.strip().split(",")
+                if len(split) > 4:
+                    raise ValueError("File is invalid format")
                 times_dict = {"200m":float(split[1]),"110m":float(split[2]),"800m":float(split[3])}
                 athlete_dict[split[0]] = times_dict
         return athlete_dict

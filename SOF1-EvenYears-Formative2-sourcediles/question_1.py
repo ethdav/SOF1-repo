@@ -20,6 +20,8 @@ def track_points(time, eventParameters):
         raise ValueError("eventParameters requires 3 values")
     
     points = eventParameters[0]*(eventParameters[1] - time)**eventParameters[2]
+    if points < 0:
+        points = 0
     return math.floor(points)
 
 def main():

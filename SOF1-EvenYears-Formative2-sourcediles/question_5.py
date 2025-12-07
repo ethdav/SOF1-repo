@@ -27,9 +27,7 @@ class Blotris:
         try:
             for s_row in range(len(shape)):
                 for s_col in range(len(shape[s_row])):
-                    if shape[s_row][s_col] == 0:
-                        pass
-                    elif shape[s_row][s_col] == 1:
+                    if shape[s_row][s_col] == 1:
                         if (self._board[row+s_row][column+s_col] + shape[s_row][s_col]) > 1:
                             self._board = old_board
                             return False
@@ -61,7 +59,9 @@ def main():
     blotris = Blotris(8,5)
     shape1 = [[0,1,1,1,1]]
     shape2 = [[1],[1],[1],[1]]
+    shape3 = [[0,1,1],[1,1,0]]
     blotris.add(shape1, 7, 0)
+    blotris.add(shape3, 5, 1)
     print(blotris)
     blotris.add(shape2, 4, 0)
     print(blotris)
