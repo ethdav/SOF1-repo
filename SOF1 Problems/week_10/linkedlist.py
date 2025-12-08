@@ -68,7 +68,7 @@ class LinkedList:
     def index(self, value, start=0, stop=2147483647):
         """The LinkedList class does operate like an actual list for some reason, but a queue, since append adds new objects to the back of the list, but pop removes from the front of the list
         """
-        for x in range(start):
+        for x in range(start, self._size):
             pass
 
 def main():
