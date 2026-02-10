@@ -1,0 +1,11 @@
+# This would be easier if you chose to sort it first
+
+func isAnangram(word_1, word_2):
+    if size(word_1) != size(word_2)
+        return False
+    endif
+    if word_1 is empty and word_2 is empty
+        return True
+    endif
+    if word_1[0] in word_2
+    
