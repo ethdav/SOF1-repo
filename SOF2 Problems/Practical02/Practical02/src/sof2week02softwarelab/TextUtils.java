@@ -1,6 +1,7 @@
 package sof2week02softwarelab;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class TextUtils {
     
@@ -14,18 +15,33 @@ public class TextUtils {
     }
 
     public static String[] split(String text) {
+        return split(text, " ");
+    }
+
+    public static String[] split(String text, String separators) {
         ArrayList<String> wordArray = new ArrayList<String>();
         text = text.strip();
+        char[] textArray = text.toCharArray();
+        char[] sepArray = separators.toCharArray();
         String word = "";
-        for (int i = 0; i <= text.length(); i++) {
-            if (i == text.length() || text.charAt(i) == ' ') { 
-                if (word != "") {
-                   wordArray.add(word); 
+        for (int i = 0; i < textArray.length; i++) {
+            boolean sepFound = false;
+            for (char separator : sepArray) {
+                if (textArray[i] == separator) {
+                    sepFound = true;
                 }
-                word = "";
+            }
+            if (sepFound == true) {
+                if (word != "") {
+                    wordArray.add(word);
+                    word = "";
+                }
             }
             else {
-                word += text.charAt(i);
+                word += textArray[i];
+            }
+            if (i == textArray.length - 1 && word != "") {
+                wordArray.add(word);
             }
         }
         String[] splitText = new String[wordArray.size()];
@@ -35,35 +51,30 @@ public class TextUtils {
         return splitText;
     }
 
-    public static String[] split(String text, String separators) {
-        char[] textArray = text.toCharArray();
-        char[] sepArray = separators.toCharArray();
-        String textWhite = "";
-        for (char letter : textArray) {
-            boolean sepFound = false;
-            for (char separator : sepArray) {
-                if (letter == separator) {
-                    sepFound = true;
-                }
-            }
-            if (sepFound == true) {
-                textWhite += " ";
-            }
-            else {
-                textWhite += letter;
-            }
+    public static int[][] rasterise(int[] data, int width) {
+        if (width == 0 || (data.length % width) != 0) {
+            return null;
         }
-        return split(textWhite);
+        int height = data.length / width;
+        int[][] newArray = new int[height][width];
+        for (int i = 0; i < data.length; i++) {
+            int heightI = Math.floorDiv(i, width);
+            newArray[heightI][i % width] = data[i];
+        }
+        return newArray;
     }
 
     public static void main(String[] args) {
         // String binString = "10001011";
         // System.out.println(toBase10(binString));
-        String seps = ".,?!/";
-        String text = "This? This is not, a test!";
-        String[] splitText = split(text, seps);
-        for (String word : splitText) {
-            System.out.println(word);
-        }
+        // String seps = " .,!?/";
+        // String text = "Tis but a scratch";
+        // String[] splitText = split(text);
+        // for (String word : splitText) {
+        //     System.out.println(word);
+        // }
+        int[] oneDArray = {0,1,2,3,4,5,6,7,8,9};
+        String arrayOutput = Arrays.deepToString(rasterise(oneDArray, 0));
+        System.out.println(arrayOutput);
     }
 }
