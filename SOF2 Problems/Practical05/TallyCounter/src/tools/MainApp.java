@@ -12,7 +12,7 @@ public class MainApp {
             }
             System.out.println(tallyCount.toString());
         } catch (InvalidOperationException e) {
-            System.out.println("Counter limit reached.");
+            System.out.println("Counter out of bounds.");
         }
         
     }
