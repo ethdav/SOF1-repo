@@ -3,7 +3,7 @@ package tcg;
 public class PowerCard extends AbstractCard{
     protected int cardPowerStrength;
 
-    PowerCard(String cardName, int cardPowerStrength) throws IllegalArgumentException{
+    public PowerCard(String cardName, int cardPowerStrength) throws IllegalArgumentException{
         super(cardName, CardType.POWER);
         if (cardPowerStrength < 1 || cardPowerStrength > 5) {
             throw new IllegalArgumentException();

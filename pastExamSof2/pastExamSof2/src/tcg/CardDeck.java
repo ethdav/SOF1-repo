@@ -11,7 +11,7 @@ public class CardDeck implements ICardDeck{
     int MAX_CARD_COPIES = 3;
     List<AbstractCard> cards = new LinkedList<>();
 
-    CardDeck(
+    public CardDeck(
         PowerCard[] powerCards, 
         CharacterCard[] characterCards,
         EffectCard[] effectCards
@@ -45,6 +45,7 @@ public class CardDeck implements ICardDeck{
             throw new IllegalArgumentException();
         }
         if (numEpicCards > MAX_EPIC_CARDS) {
+            System.out.print(numEpicCards);
             throw new IllegalArgumentException();
         }
         if (characterCards.length < MIN_CHARACTER_CARDS) {

@@ -5,7 +5,7 @@ public class EffectCard extends AbstractCard{
     protected int cardTurnCount;
     protected boolean cardCoinToss;
 
-    EffectCard(
+    public EffectCard(
         String cardName, 
         String cardInstructions, 
         int cardTurnCount, 
@@ -18,28 +18,30 @@ public class EffectCard extends AbstractCard{
         }
         this.cardInstructions = cardInstructions;
         this.cardCoinToss = cardCoinToss;
+        this.cardTurnCount = cardTurnCount;
         calculateRarity();
     }
 
     @Override
     void calculateRarity() {
-        if (cardTurnCount == 1) {
+        if (this.cardTurnCount == 1) {
             this.cardRarity = Rarity.COMMON;
         }
-        else if (cardTurnCount == 2) {
+        else if (this.cardTurnCount == 2) {
             this.cardRarity = Rarity.UNCOMMON;
         }
-        else if (cardTurnCount == 3) {
-            if (cardCoinToss) {
+        else if (this.cardTurnCount == 3) {
+            if (this.cardCoinToss) {
                 this.cardRarity = Rarity.UNCOMMON;
             }
             else {
                 this.cardRarity = Rarity.RARE;
             }
         }
-        else {
+        else if (this.cardTurnCount == 0) {
             this.cardRarity = Rarity.EPIC;
         }
+
     }
 
     public String getCardInstructions() {
