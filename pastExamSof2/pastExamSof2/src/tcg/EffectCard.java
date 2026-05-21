@@ -5,8 +5,13 @@ public class EffectCard extends AbstractCard{
     protected int cardTurnCount;
     protected boolean cardCoinToss;
 
-    EffectCard(String cardName, String cardInstructions, 
-                int cardTurnCount, boolean cardCoinToss) throws IllegalArgumentException{
+    EffectCard(
+        String cardName, 
+        String cardInstructions, 
+        int cardTurnCount, 
+        boolean cardCoinToss
+    ) throws IllegalArgumentException
+    {
         super(cardName, CardType.EFFECT);
         if (cardTurnCount < 0 || cardTurnCount > 3) {
             throw new IllegalArgumentException();

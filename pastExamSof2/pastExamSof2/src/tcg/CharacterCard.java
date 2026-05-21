@@ -5,10 +5,10 @@ import java.util.*;
 public class CharacterCard extends AbstractCard{
     protected int cardHealth;
     protected String cardPowerType;
-    protected List<Ability> cardAbilities;
-    private final String message = "CharacterCard: Ability % does not match power type.";
+    protected List<Ability> cardAbilities = new ArrayList<>();
+    private String message = "CharacterCard: Ability %s does not match power type.";
 
-    CharacterCard(
+    public CharacterCard(
         String cardName, 
         String cardPowerType,
         int cardHealth, 
@@ -22,7 +22,7 @@ public class CharacterCard extends AbstractCard{
         
         int listLen = 0;
         for(Ability ability : cardAbilities) {
-            if (ability.abilityPowerType != cardPowerType || ability.abilityPowerType != "ANY") {
+            if (ability.abilityPowerType != cardPowerType && ability.abilityPowerType != "ANY") {
                 throw new IncompatiblePowerException(
                     String.format(message, ability.abilityName), 
                     cardPowerType, 

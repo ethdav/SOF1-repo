@@ -12,6 +12,6 @@ public class IncompatiblePowerException extends Exception{
 
     @Override
     public String toString() {
-        return message + "," + power1 + "," + power2;
+        return message + power1 + "," + power2;
     }
 }
